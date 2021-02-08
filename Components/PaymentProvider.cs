@@ -46,21 +46,16 @@ namespace OS_Stripe
             try
             {
 
-                 var payPlugData = new StripeLimpet(orderData);
+                 var stripeData = new StripeLimpet(orderData);
 
-                var paymentkey = payPlugData.CreatePayment();
-                if (paymentkey != null && paymentkey.ContainsKey("hosted_payment"))
+                var paymentkey = stripeData.CreateSession();
+                if (paymentkey != null && paymentkey != "")
                 {
-                    var hosted_payment = paymentkey["hosted_payment"];
-                    if (hosted_payment != null)
-                    {
-                        orderData.PurchaseInfo.SetXmlProperty("genxml/posturl", hosted_payment["payment_url"].Value);
-                        orderData.PurchaseInfo.SetXmlProperty("genxml/paymentkey", paymentkey["id"]);
-                        orderData.Save();
+                    orderData.PurchaseInfo.SetXmlProperty("genxml/paymentkey", paymentkey);
+                    orderData.Save();
 
-                        HttpContext.Current.Response.Clear();
-                        HttpContext.Current.Response.Write(ProviderUtils.GetBankRemotePost(orderData));
-                    }
+                    HttpContext.Current.Response.Clear();
+                    HttpContext.Current.Response.Write(ProviderUtils.GetBankRemotePost(orderData));
                 }
             }
             catch (Exception ex)
@@ -68,6 +63,7 @@ namespace OS_Stripe
                 // rollback transaction
                 orderData.PurchaseInfo.SetXmlProperty("genxml/paymenterror", "<div>ERROR: Invalid payment data </div><div>" + ex + "</div>");
                 orderData.PaymentFail();
+                
                 var param = new string[3];
                 param[0] = "orderid=" + orderData.PurchaseInfo.ItemID.ToString("");
                 param[1] = "status=0";

@@ -13,7 +13,6 @@
     var info = (NBrightInfo)Model.List.First();
 }
 
-
 <style>
     /* Default buttons */
     .paybutton {
@@ -45,26 +44,28 @@
         }
 </style>
 
-        <div id="OSPayPalparam">
+<script src="https://js.stripe.com/v3/Stripe.js"></script>
 
-            <input id="paymentproviderkey" type="hidden" value="OS_Stripe" />
+<div id="OSStripeparam">
 
-            <h3>@info.GetXmlProperty("genxml/lang/genxml/textbox/title")</h3>
+    <input id="paymentproviderkey" type="hidden" value="OS_Stripe" />
 
-            <div>
-                <img width="120px" src='/DesktopModules/NBright/OS_Stripe/Themes/config/img/@(info.GetXmlProperty("genxml/dropdownlist/imagelogo"))'/>
-            </div>
+    <h3>@info.GetXmlProperty("genxml/lang/genxml/textbox/title")&nbsp;(Stripe)</h3>
 
-            <div class="defaultmessage">@info.GetXmlProperty("genxml/lang/genxml/textbox/message")</div>
+    <div>
+        <img width="120px" src='/DesktopModules/NBright/OS_Stripe/Themes/config/img/@(info.GetXmlProperty("genxml/dropdownlist/imagelogo"))' />
+    </div>
 
-            <div class="clearfix"></div>
+    <div class="defaultmessage">@info.GetXmlProperty("genxml/lang/genxml/textbox/message")</div>
 
-            <div id="cartactions" style="">
-                <div style="clear: both;">
-                    <a href="?provider=ospayplug" id="cmdOSPayPal" class="primarybutton">@info.GetXmlProperty("genxml/lang/genxml/textbox/buttontext")</a>
-                </div>
-            </div>
+    <div class="clearfix"></div>
 
+    <div id="cartactions" style="">
+        <div style="clear: both;">
+            <a href="?provider=osstripe" id="cmdOSPayPal" class="primarybutton">@info.GetXmlProperty("genxml/lang/genxml/textbox/buttontext")</a>
         </div>
+    </div>
 
-        <hr />
+</div>
+
+<hr />

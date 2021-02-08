@@ -33,15 +33,15 @@ namespace OS_Stripe
                     var paymentkey = orderData.PurchaseInfo.GetXmlProperty("genxml/paymentkey");
                     if (paymentkey != "")
                     {
-                        var payPlugData = new StripeLimpet(orderData);
-                        var paymentData = payPlugData.RetrievePayment(paymentkey);
-                        if (paymentData != null && paymentData.ContainsKey("is_paid"))
-                        {
-                            if (paymentData["is_paid"])
-                                orderData.PaymentOk();
-                            else
-                                orderData.PaymentFail();
-                        }
+                        //var payPlugData = new StripeLimpet(orderData);
+                        //var paymentData = payPlugData.RetrievePayment(paymentkey);
+                        //if (paymentData != null && paymentData.ContainsKey("is_paid"))
+                        //{
+                        //    if (paymentData["is_paid"])
+                        //        orderData.PaymentOk();
+                        //    else
+                        //        orderData.PaymentFail();
+                        //}
                     }
                 }
 

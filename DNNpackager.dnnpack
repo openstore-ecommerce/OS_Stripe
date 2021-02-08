@@ -21,5 +21,7 @@
   </file>
 	<assembly>
 		<value>OS_Stripe.dll</value>
-	</assembly>  
+    <value>Stripe.net.dll</value>
+    <value>Microsoft.Bcl.AsyncInterfaces.dll</value>    
+  </assembly>  
 </root>
