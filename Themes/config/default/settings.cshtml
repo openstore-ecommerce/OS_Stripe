@@ -25,7 +25,7 @@ var info = (NBrightInfo)Model.List.First();
                 <i class="fa fa-bars"></i>
             </a>
             <div class="actionbuttonwrapper">
-                <a id="OSPayPal_cmdSave" class="btn btn-primary" href="javascript:void(0);">@ResourceKey("General.cmdSaveButton")</a>
+                <a id="OSStripe_cmdSave" class="btn btn-primary" href="javascript:void(0);">@ResourceKey("General.cmdSaveButton")</a>
             </div>
         </div>
         <div class="col-xs-3 col-sm-3 top-panel-right">
@@ -35,7 +35,7 @@ var info = (NBrightInfo)Model.List.First();
 
 <div class="row">
 
-    <div class="OSPayPalreturnmsg">
+    <div class="OSStripereturnmsg">
     </div>
 
     <div class="col-xs-12 col-sm-12">
@@ -45,7 +45,7 @@ var info = (NBrightInfo)Model.List.First();
                     <i class="fa fa-search"></i><span>OS_Stripe Payment</span>
                 </div>
             </div>
-            <div class="box-content OSPayPaldata">
+            <div class="box-content OSStripedata">
 
                 @RenderTemplate("\\DesktopModules\\NBright\\OS_Stripe\\Themes\\config\\Default\\settingsfields.cshtml", Model)
 

@@ -20,8 +20,14 @@ namespace OS_Stripe
         {
             string sipsHtml = "";
 
-            sipsHtml = "<html><head>";
-            sipsHtml += "</head><body onload=\"document." + FormName + ".submit()\">";
+            sipsHtml = "<html><head><script src='https://js.stripe.com/v3'></script>";
+            sipsHtml += "<script>";
+            sipsHtml += "var stripe = Stripe(\"" + Inputs["publickey"] + "\");";
+            sipsHtml += "function redirecttostripe() { ";
+            sipsHtml += " stripe.redirectToCheckout({ \"sessionId\":\"" + Inputs["sessionid"] + "\" }); ";
+            sipsHtml += " }";
+            sipsHtml += "</script>";
+            sipsHtml += "</head><body onload=\"redirecttostripe()\">";
             sipsHtml += "<form name=\"" + FormName + "\" method=\"" + Method + "\" action=\"" + Url + "\">";
             int i = 0;
             for (i = 0; i <= Inputs.Keys.Count - 1; i += 1)
@@ -34,10 +40,9 @@ namespace OS_Stripe
             sipsHtml += "<tr><td width=\"100%\" height=\"100%\" valign=\"middle\" align=\"center\">";
             sipsHtml += "<font style=\"font-family: Trebuchet MS, Verdana, Helvetica;font-size: 14px;letter-spacing: 1px;font-weight: bold;\">";
             sipsHtml += "Processing...";
-            sipsHtml += "</font><br /><br /><img src='/DesktopModules/NBright/NBrightBuy/Themes/ClassicAjax/img/loading.gif' />     ";
+            sipsHtml += "</font><br /><br /><img src='/DesktopModules/NBright/OS_Stripe/Themes/config/img/loading.gif' style='width:80px;height:80px;' />     ";
             sipsHtml += "</td></tr>";
             sipsHtml += "</table>";
-
             sipsHtml += "</body></html>";
 
             return sipsHtml;

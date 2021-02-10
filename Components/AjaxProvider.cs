@@ -39,7 +39,7 @@ namespace OS_Stripe
                 case "osstripe_selectlang":
                     objCtrl.SavePluginSinglePageData(context);
                     var nextlang = ajaxInfo.GetXmlProperty("genxml/hidden/nextlang");
-                    var info = objCtrl.GetPluginSinglePageData("OSPayPalpayment", "OSPayPalPAYMENT", nextlang);
+                    var info = objCtrl.GetPluginSinglePageData("OSStripepayment", "OSStripePAYMENT", nextlang);
                     strOut = NBrightBuyUtils.RazorTemplRender("settingsfields.cshtml", 0, "", info, "/DesktopModules/NBright/OS_Stripe", "config", nextlang, StoreSettings.Current.Settings());
                     break;
             }

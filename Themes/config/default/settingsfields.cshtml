@@ -134,21 +134,9 @@ var info = (NBrightInfo)Model.List.First();
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label">PayPlug API Base Url</label>
+            <label class="col-sm-2 control-label">Publishable key</label>
             <div class="col-sm-6">
-                @TextBox(info, "genxml/textbox/apibaseurl", "class='form-control' ", "https://api.payplug.com")
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">API verison</label>
-            <div class="col-sm-6">
-                @TextBox(info, "genxml/textbox/apiversion", "class='form-control' ", "2019-08-06")
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">API Url version path</label>
-            <div class="col-sm-6">
-                @TextBox(info, "genxml/textbox/urlversionpath", "class='form-control' ", "v1")
+                @TextBox(info, "genxml/textbox/publickey", "class='form-control' ", "")
             </div>
         </div>
 

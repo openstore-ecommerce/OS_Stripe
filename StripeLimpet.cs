@@ -48,7 +48,7 @@ namespace OS_Stripe
                       Currency = _payData.CurrencyCode.ToLower(),
                       ProductData = new SessionLineItemPriceDataProductDataOptions
                       {
-                        Name = "Stubborn Attachments",
+                        Name = _oData.OrderNumber,
                       },
                     },
                     Quantity = 1,

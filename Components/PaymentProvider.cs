@@ -48,10 +48,10 @@ namespace OS_Stripe
 
                  var stripeData = new StripeLimpet(orderData);
 
-                var paymentkey = stripeData.CreateSession();
-                if (paymentkey != null && paymentkey != "")
+                var sessionid = stripeData.CreateSession();
+                if (sessionid != null && sessionid != "")
                 {
-                    orderData.PurchaseInfo.SetXmlProperty("genxml/paymentkey", paymentkey);
+                    orderData.PurchaseInfo.SetXmlProperty("genxml/sessionid", sessionid);
                     orderData.Save();
 
                     HttpContext.Current.Response.Clear();

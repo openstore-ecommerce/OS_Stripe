@@ -32,14 +32,9 @@ namespace OS_Stripe
             var alreadypaid = oInfo.PurchaseInfo.GetXmlPropertyDouble("genxml/alreadypaid");
 
             ItemId = oInfo.PurchaseInfo.ItemID.ToString("");
-            PostUrl = oInfo.PurchaseInfo.GetXmlProperty("genxml/posturl");
             CartName = "NBrightStore";
             SecretKey = settings.GetXmlProperty("genxml/textbox/secretkey");
-            ApiBaseUrl = settings.GetXmlProperty("genxml/textbox/apibaseurl");
-            if (ApiBaseUrl == "") ApiBaseUrl = "https://api.payplug.com";
-            ApiVersion = settings.GetXmlProperty("genxml/textbox/apiversion");
-            UrlVersionPath = settings.GetXmlProperty("genxml/textbox/urlversionpath");
-            if (UrlVersionPath == "") UrlVersionPath = "v1";
+            PublicKey = settings.GetXmlProperty("genxml/textbox/publickey");
 
             CurrencyCode = oInfo.PurchaseInfo.GetXmlProperty("genxml/currencycode");
             if (CurrencyCode == "") CurrencyCode = settings.GetXmlProperty("genxml/textbox/currencycode");
@@ -59,9 +54,6 @@ namespace OS_Stripe
         }
 
         public string ItemId { get; set; }
-        public string PostUrl { get; set; }
-        public string VerifyUrl { get; set; }
-        public string PayPalId { get; set; }
         public string CartName { get; set; }
         public string CurrencyCode { get; set; }
         public string ReturnUrl { get; set; }
@@ -73,11 +65,8 @@ namespace OS_Stripe
         public string ShippingAmount { get; set; }
         public string TaxAmount { get; set; }
         public string SecretKey { get; set; }
-        public string ApiBaseUrl { get; set; }
-        public string ApiVersion { get; set; }
-        public string UrlVersionPath { get; set; }
-        public string ApiBasePath { get { return ApiBaseUrl + "/" + UrlVersionPath.Trim('/');  }  }
-        
+        public string PublicKey { get; set; }
+
     }
 
 

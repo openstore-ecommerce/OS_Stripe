@@ -37,7 +37,8 @@ namespace OS_Stripe
             // get the order data
             var payData = new PayData(orderData);
 
-            rPost.Url = payData.PostUrl;
+            rPost.Add("publickey", payData.PublicKey);
+            rPost.Add("sessionid", orderData.PurchaseInfo.GetXmlProperty("genxml/sessionid"));
 
             //Build the re-direct html 
             var rtnStr = "";
