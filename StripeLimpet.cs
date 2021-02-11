@@ -36,32 +36,35 @@ namespace OS_Stripe
             {
                 PaymentMethodTypes = new List<string>
                 {
-                  "card",
+                    "card",
                 },
                 LineItems = new List<SessionLineItemOptions>
                 {
-                  new SessionLineItemOptions
-                  {
-                    PriceData = new SessionLineItemPriceDataOptions
+                    new SessionLineItemOptions
                     {
-                      UnitAmount = Convert.ToInt32(_payData.Amount),
-                      Currency = _payData.CurrencyCode.ToLower(),
-                      ProductData = new SessionLineItemPriceDataProductDataOptions
-                      {
-                        Name = _oData.OrderNumber,
-                      },
+                        PriceData = new SessionLineItemPriceDataOptions
+                        {
+                            UnitAmount = Convert.ToInt32(_payData.Amount),
+                            Currency = _payData.CurrencyCode.ToLower(),
+                            ProductData = new SessionLineItemPriceDataProductDataOptions
+                            {
+                                Name = _oData.OrderNumber,
+
+                            },
+                        },
+                        Quantity = 1,
                     },
-                    Quantity = 1,
-                  },
                 },
                 Mode = "payment",
                 SuccessUrl = _payData.ReturnUrl,
                 CancelUrl = _payData.ReturnCancelUrl,
+                ClientReferenceId = _oData.PurchaseInfo.ItemID.ToString(),
             };
             var service = new SessionService();
             Session session = service.Create(options);
             return session.Id;
         }
+
 
     }
 }
