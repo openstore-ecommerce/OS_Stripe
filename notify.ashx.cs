@@ -44,7 +44,10 @@ namespace OS_Stripe
                     json += jsonArray[counter];
                 }
 
-                var stripeEvent = EventUtility.ParseEvent(json);
+
+                var stripeEvent = EventUtility.ConstructEvent(json, context.Request.Headers["Stripe-Signature"], info.GetXmlProperty("genxml/textbox/webhooksecretkey") );
+
+                //var stripeEvent = EventUtility.ConstructEvent(json, context.Request.Headers["Stripe-Signature"], "whsec_WuWHl9VlJD8tAwDanj9edsf2NyrJcRho");                
 
                 var settings = ProviderUtils.GetProviderSettings();
                 if (settings.GetXmlPropertyBool("genxml/checkbox/debugmode"))
@@ -52,20 +55,16 @@ namespace OS_Stripe
                     System.IO.File.WriteAllText(PortalSettings.Current.HomeDirectoryMapPath + "\\debug_stripeIPN.json", json);
                 }
 
-                var paymentIntent = stripeEvent.Data.Object as PaymentIntent;
-                var orderid =  paymentIntent.CustomerId;
-                if (Utils.IsNumeric(orderid))
+                var orderid = "";
+                // Handle the checkout.session.completed event
+                if (stripeEvent.Type == Events.CheckoutSessionCompleted)
                 {
-                    var orderData = new OrderData(Convert.ToInt32(orderid));
-
-                    // Handle the event
-                    if (stripeEvent.Type == Events.PaymentIntentSucceeded)
+                    var session = stripeEvent.Data.Object as Stripe.Checkout.Session;
+                    orderid = session.ClientReferenceId;
+                    if (Utils.IsNumeric(orderid))
                     {
+                        var orderData = new OrderData(Convert.ToInt32(orderid));
                         orderData.PaymentOk();
-                    }
-                    else
-                    {
-                        orderData.PaymentFail();
                     }
                 }
 

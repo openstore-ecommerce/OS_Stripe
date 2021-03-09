@@ -49,7 +49,6 @@ namespace OS_Stripe
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
                                 Name = _oData.OrderNumber,
-
                             },
                         },
                         Quantity = 1,
@@ -63,6 +62,12 @@ namespace OS_Stripe
             var service = new SessionService();
             Session session = service.Create(options);
             return session.Id;
+        }
+
+        public Session RetrieveSession(string sessionid)
+        {
+            var service = new SessionService();
+            return service.Get(sessionid);
         }
 
 

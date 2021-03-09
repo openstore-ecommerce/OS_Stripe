@@ -30,18 +30,21 @@ namespace OS_Stripe
 
             var strOut = "OS_Stripe Ajax Error";
 
-            // NOTE: The paramCmd MUST start with the plugin ref. in lowercase. (links ajax provider to cmd)
-            switch (paramCmd)
+            if (PluginUtils.CheckPluginSecurity(PortalSettings.Current.PortalId, "osstripe"))
             {
-                case "osstripe_savesettings":
-                    strOut = objCtrl.SavePluginSinglePageData(context);
-                    break;
-                case "osstripe_selectlang":
-                    objCtrl.SavePluginSinglePageData(context);
-                    var nextlang = ajaxInfo.GetXmlProperty("genxml/hidden/nextlang");
-                    var info = objCtrl.GetPluginSinglePageData("OSStripepayment", "OSStripePAYMENT", nextlang);
-                    strOut = NBrightBuyUtils.RazorTemplRender("settingsfields.cshtml", 0, "", info, "/DesktopModules/NBright/OS_Stripe", "config", nextlang, StoreSettings.Current.Settings());
-                    break;
+                // NOTE: The paramCmd MUST start with the plugin ref. in lowercase. (links ajax provider to cmd)
+                switch (paramCmd)
+                {
+                    case "osstripe_savesettings":
+                        strOut = objCtrl.SavePluginSinglePageData(context);
+                        break;
+                    case "osstripe_selectlang":
+                        objCtrl.SavePluginSinglePageData(context);
+                        var nextlang = ajaxInfo.GetXmlProperty("genxml/hidden/nextlang");
+                        var info = objCtrl.GetPluginSinglePageData("OSStripepayment", "OSStripePAYMENT", nextlang);
+                        strOut = NBrightBuyUtils.RazorTemplRender("settingsfields.cshtml", 0, "", info, "/DesktopModules/NBright/OS_Stripe", "config", nextlang, StoreSettings.Current.Settings());
+                        break;
+                }
             }
 
             return strOut;

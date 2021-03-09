@@ -75,7 +75,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Components\AjaxProvider.cs" />
     <Compile Include="Components\PaymentProvider.cs" />
     <Compile Include="Components\ProviderUtils.cs" />
@@ -108,7 +107,9 @@
     <None Include="app.config" />
     <None Include="DNNpackager.dnnpack" />
     <None Include="notify.ashx" />
+    <None Include="OS_Stripe.dnn" />
     <None Include="packages.config" />
+    <None Include="README.md" />
     <None Include="Themes\config\default\methodselection.cshtml" />
     <None Include="Themes\config\default\payment_fail.cshtml" />
     <None Include="Themes\config\default\payment_ok.cshtml" />
