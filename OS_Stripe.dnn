@@ -35,7 +35,12 @@
 							<name>OS_Stripe.dll</name>
 							<sourceFileName>OS_Stripe.dll</sourceFileName>
 						</assembly>
-					</assemblies>
+            <assembly>
+              <path>bin</path>
+              <name>Stripe.net.dll</name>
+              <sourceFileName>Stripe.net.dll</sourceFileName>
+            </assembly>
+          </assemblies>
 				</component>
 				<component type="File">
 					<files>
