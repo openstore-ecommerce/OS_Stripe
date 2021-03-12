@@ -1,4 +1,4 @@
-# OS_Stripe
+# OS_Stripe  (BETA)
 
 ## Installation
 
@@ -6,7 +6,7 @@ Install as a normal DNN module.
 
 Go into the OpenStore Admin>Plugins.  You should see the Stripe plugin added.
 
-Get the secretkey and publickey from your striope account and add them to the settings.
+Get the secretkey and publickey from your Stripe account and add them to the settings.
 
 
 ## Stripe WebHooks (IPN)
